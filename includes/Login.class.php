@@ -3,8 +3,8 @@
 class Login {
 
     public function doLogin($email, $password, $rememberMe = false) {
-
-        $query = "SELECT * FROM user WHERE email='$email' AND password='$password'";
+        $password2 = passwordHash($password);
+        $query = "SELECT * FROM user WHERE email='$email' AND password='$password2'";
         $result = Db::get()->query($query);
 
         if ($result->num_rows == 1) {

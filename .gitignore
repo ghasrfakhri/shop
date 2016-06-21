@@ -1,3 +1,4 @@
 /vendor/
 /cache/compilation_cache/*
 !/cache/compilation_cache/.gitkeep
+/nbproject/private/

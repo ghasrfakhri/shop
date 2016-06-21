@@ -11,6 +11,11 @@
             <h1>Header</h1>
         </div>
         <div>
+            {% for m in messages %}
+                <div>
+                    {{m}}
+                </div>
+            {% endfor %}
             {% block content %}
 
             {% endblock %}

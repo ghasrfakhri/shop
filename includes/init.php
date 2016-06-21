@@ -1,5 +1,8 @@
 <?php
 
+define("DEBUG", true);
+define("PASSWORD_SALT", "sdfsdfsdfsdferwerwert4");
+
 session_start();
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/functions.php';
@@ -15,5 +18,7 @@ $loader = new Twig_Loader_Filesystem(__DIR__ . '/../templates');
 
 $twig = new Twig_Environment($loader, array(
     'cache' => __DIR__ . '/../cache/compilation_cache',
+    'debug' => DEBUG
         ));
 
+$twig->addGlobal("messages", getFlashMessages());

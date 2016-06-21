@@ -11,19 +11,16 @@ class MyMysqli extends mysqli {
         $result = parent::query($query);
         if ($result === false) {
             if (DEBUG) {
-                echo "Db Error:" . $this->error . "<br>";
-                echo "Db Error No:" . $this->errno . "<br>";
-                echo "Query:" . $query . "<br>";
                 $debugTrace = debug_backtrace();
-                echo "File:" . $debugTrace[0]['file'] . "<br>";
-                echo "Line:" . $debugTrace[0]['line'] . "<br>";
-
-                var_dump($debugTrace);
-                exit();
+                $errorMessage = "Db Error:" . $this->error . "\n" .
+                        "Db Error No:" . $this->errno . "\n" .
+                        "Query:" . $query . "\n" .
+                        "File:" . $debugTrace[0]['file'] . "\n" .
+                        "Line:" . $debugTrace[0]['line'] . "\n";
             } else {
-                echo "An error occured";
-                exit();
+                $errorMessage = "An error occured";
             }
+            throw new Exception($errorMessage, $this->errno);
         }
         return $result;
     }
