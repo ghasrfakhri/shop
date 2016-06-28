@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html dir="rtl"> 
+    <head>
+        <title>Shop</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <h1>Header</h1>
+        </div>
+        <div>
+            <a href="{{path}}/admin/products/index.php">محصولات</a>
+            <a href=""></a>
+        </div>
+        <div>
+            {% for m in messages %}
+                <div>
+                    {{m}}
+                </div>
+            {% endfor %}
+            {% block content %}
+
+            {% endblock %}
+        </div>
+
+    </body>
+</html>

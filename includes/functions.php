@@ -4,9 +4,21 @@ function escapeString($string) {
     return Db::get()->real_escape_string($string);
 }
 
+function getPostData($name) {
+    return escapeString($_POST[$name]);
+}
+
+function getNumParam($name) {
+    return (int) (isset($_GET[$name]) ? $_GET[$name] : 0);
+}
+
 function redirect($url) {
     header("Location: $url");
     exit;
+}
+
+function isPost() {
+    return ($_SERVER['REQUEST_METHOD'] == "POST");
 }
 
 function passwordHash($password) {

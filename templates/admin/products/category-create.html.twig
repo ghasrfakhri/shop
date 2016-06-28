@@ -1,0 +1,18 @@
+{% extends "admin/layout.html.twig" %}
+
+{% block content %}
+
+    <form action="" method="post">
+        {{parentName}}<br>
+
+        <label>
+            نام دسته:
+            <input type="text" name="name">
+        </label><br>
+
+        <input type="submit" value="ذخیره" >
+
+    </form>
+
+
+{% endblock %}

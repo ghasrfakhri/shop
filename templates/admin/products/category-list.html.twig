@@ -1,0 +1,28 @@
+{% extends "admin/layout.html.twig" %}
+
+{% block content %}
+    <a href="{{path}}/admin/products/category-create.php?parent_id={{parent_id}}">افزودن دسته</a>
+    <a href="{{path}}/admin/products/category-list.php">لیست دسته ها</a>
+    <hr>
+    <h2>{{parentName}}</h2>
+    <hr>
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+        </tr>
+        {% for c in categories %}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td><a href="?parent_id={{c.id}}">{{c.name}}</a></td>
+            </tr>
+
+
+        {%  else %}
+            <tr>
+                <td colspan="2">هیچ زیر دسته ای وجود ندارد</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

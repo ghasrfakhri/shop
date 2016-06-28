@@ -1,0 +1,29 @@
+{% extends "admin/layout.html.twig" %}
+
+{% block content %}
+    <a href="{{path}}/admin/products/create.php">افزودن</a>
+    <a href="{{path}}/admin/products/category-list.php">لیست دسته ها</a>
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Status</th>
+        </tr>
+        {% for p in products %}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td><a href="view.php?id={{p.id}}">{{p.name}}</a></td>
+                <td></td>
+                <td>{{p.price}}</td>
+                <td>{{p.quantity}}</td>
+                <td>{{p.status}}</td>
+            </tr>
+
+
+        {% endfor %}
+    </table>
+
+{% endblock %}

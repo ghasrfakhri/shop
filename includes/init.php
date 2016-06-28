@@ -20,5 +20,8 @@ $twig = new Twig_Environment($loader, array(
     'cache' => __DIR__ . '/../cache/compilation_cache',
     'debug' => DEBUG
         ));
-
+if (DEBUG) {
+    $twig->addExtension(new Twig_Extension_Debug());
+}
+$twig->addGlobal("path", "/shop");
 $twig->addGlobal("messages", getFlashMessages());
