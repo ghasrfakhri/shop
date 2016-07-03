@@ -4,6 +4,20 @@ function escapeString($string) {
     return Db::get()->real_escape_string($string);
 }
 
+function checkLogin() {
+    $login = new Login();
+    if (!$login->isLogin()) {
+        redirect(PATH);
+    }
+}
+
+function checkAdmin() {
+    $login = new Login();
+    if (!$login->isGranted("ADMIN")) {
+        redirect(PATH);
+    }
+}
+
 function getPostData($name) {
     return escapeString($_POST[$name]);
 }

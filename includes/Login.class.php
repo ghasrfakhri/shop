@@ -21,20 +21,37 @@ class Login {
         }
     }
 
+    public function logout() {
+        unset($_SESSION['user']);
+        unset($_SESSION['userId']);
+    }
+
     public function isLogin() {
         if (isset($_SESSION['userId']) && !empty($_SESSION['userId'])) {
+            $_SESSION['user'] = $this->getUser($_SESSION['userId']);
             return true;
         } else {
             if (isset($_COOKIE['userId']) && $_COOKIE['secret']) {
                 $user = $this->getUser($_COOKIE['userId']);
                 if ($_COOKIE['secret'] === $this->getSecretHash($user)) {
                     $_SESSION['userId'] = $_COOKIE['userId'];
+                    $_SESSION['user'] = $this->getUser($_SESSION['userId']);
                     return true;
                 }
             }
         }
 
         return false;
+    }
+
+    public function isGranted($role) {
+        if (!$this->isLogin()) {
+            return false;
+        }
+
+        $user = $_SESSION['user'];
+        $roles = unserialize($user['roles']);
+        return in_array($role, $roles);
     }
 
     private function getSecretHash($user) {

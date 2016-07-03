@@ -2,7 +2,7 @@
 
 require '../../includes/init.php';
 
-
+checkAdmin();
 $category = new ProductCategory();
 
 $parentId = getNumParam('parent_id');

@@ -1,0 +1,15 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+    {% if message is not empty %}
+        <strong>{{message}}</strong>
+    {% endif %}
+    <form action="https://sep.shaparak.ir/Payment.aspx" method="post">
+        Amount: <input type="text" name="Amount"><br>
+        ResNum: <input type="text" name="lastname"><br>
+        MID: <input type="text" name="MID" value="10002741"><br>
+        Redirect: <input type="text" name="RedirectURL" value=""><br>
+
+        <input type="submit">
+    </form>
+{% endblock %}

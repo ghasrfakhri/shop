@@ -1,6 +1,7 @@
 <?php
 
 define("DEBUG", true);
+define("PATH", "/shop");
 define("PASSWORD_SALT", "sdfsdfsdfsdferwerwert4");
 
 session_start();
@@ -23,5 +24,10 @@ $twig = new Twig_Environment($loader, array(
 if (DEBUG) {
     $twig->addExtension(new Twig_Extension_Debug());
 }
-$twig->addGlobal("path", "/shop");
+$twig->addGlobal("path", PATH);
 $twig->addGlobal("messages", getFlashMessages());
+
+$login = new Login();
+if ($login->isLogin()) {
+    $twig->addGlobal("user", $_SESSION['user']);
+}

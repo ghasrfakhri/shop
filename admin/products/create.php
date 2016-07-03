@@ -1,7 +1,7 @@
 <?php
 
 require '../../includes/init.php';
-
+checkAdmin();
 if (isPost()) {
     $product = new Product();
 

@@ -4,9 +4,10 @@ class Register {
 
     public function create($email, $password, $firstname, $lastname) {
         $password2 = passwordHash($password);
+        $roles = serialize(["ADMIN"]);
         $query = "INSERT INTO user SET "
                 . "email='$email', password='$password2', "
-                . "firstname='$firstname', lastname='$lastname'";
+                . "firstname='$firstname', lastname='$lastname', roles='$roles'";
 
         Db::get()->query($query);
 

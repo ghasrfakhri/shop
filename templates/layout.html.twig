@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html dir="rtl">
     <head>
         <title>Shop</title>
         <meta charset="UTF-8">
@@ -10,6 +10,17 @@
         <div>
             <h1>Header</h1>
         </div>
+
+        <hr>
+        <div>
+            {% if user is defined %}
+                <a href="{{path}}/logout.php">خروج</a>
+            {% else %}
+                <a href="{{path}}/login.php">ورود</a> -
+                <a href="{{path}}/register.php">ثبت نام</a>
+            {% endif %}
+        </div>
+        <hr>
         <div>
             {% for m in messages %}
                 <div>
