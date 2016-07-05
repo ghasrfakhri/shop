@@ -11,9 +11,20 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $password = escapeString($_POST['password']);
 
     if ($login->doLogin($email, $password)) {
-        redirect("index.php");
+        if (isset($_SESSION['referer_url'])) {
+            $url = $_SESSION['referer_url'];
+        } else {
+            $url = "index.php";
+        }
+        redirect($url);
     } else {
         $msg = "Invalid Username or password";
+    }
+} else {
+    if (isset($_SERVER['HTTP_REFERER'])) {
+        $_SESSION['referer_url'] = $_SERVER['HTTP_REFERER'];
+    } else {
+        unset($_SESSION['referer_url']);
     }
 }
 

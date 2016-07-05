@@ -54,6 +54,12 @@ class Login {
         return in_array($role, $roles);
     }
 
+    public function getCurrentUser() {
+        if ($this->isLogin()) {
+            return $_SESSION['user'];
+        }
+    }
+
     private function getSecretHash($user) {
         return sha1(md5($user['email']) . $user['password']);
     }

@@ -84,4 +84,44 @@ class Product {
         return $c[0];
     }
 
+    public function getList($f = 0, $filter = null, $order = null) {
+        $query = "SELECT * FROM product WHERE status='visible' ";
+        if ($filter !== null) {
+            $query .= " AND ($filter) ";
+        }
+
+        if ($order !== null && is_array($order) && count($order)) {
+            $query .= " ORDER BY " . implode(",", $order) . " ";
+        }
+
+        $query .= "LIMIT $f, $this->n";
+
+        $result = Db::get()->query($query);
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getCount() {
+        $query = "SELECT COUNT(*) FROM product WHERE status='visible' ";
+        $result = Db::get()->query($query);
+
+        $c = $result->fetch_row();
+        return $c[0];
+    }
+
+    public function get($id) {
+        $query = "SELECT * FROM product WHERE id=$id AND status='visible'";
+        $result = Db::get()->query($query);
+
+        $product = $result->fetch_assoc();
+        $product['categories'] = $this->adminGetProductCategories($id);
+
+        return $product;
+    }
+
+    public function incVisitCount($id) {
+        $query = "UPDATE product SET visit_count=visit_count+1 WHERE id=$id";
+        Db::get()->query($query);
+    }
+
 }

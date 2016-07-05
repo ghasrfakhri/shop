@@ -1,0 +1,9 @@
+.prd{
+    height: 150px;
+    width: 150px;
+    float: right;
+    border: 1px solid gray;
+    padding: 10px;
+    margin: 5px;
+    text-align: center;
+}
